@@ -1,9 +1,9 @@
 # Fdb version 3
-["pdflatex"] 1729910686 "/media/danielhp/DATA/Escuela/C. Computación/Investigación/Colin-Sequence/jce/jcereport/jcematcom.tex" "build/jcematcom.pdf" "jcematcom" 1729910688
+["pdflatex"] 1729911666 "/media/danielhp/DATA/Escuela/C. Computación/Investigación/Colin-Sequence/jce/jcereport/Identifying Elenas.tex" "build/Identifying Elenas.pdf" "Identifying Elenas" 1729911701
   "/etc/texmf/web2c/texmf.cnf" 1680493193 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/danielhp/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk" 1729196003 8244 d4173706ccb0c4f10f7e343399f1b49e ""
   "/home/danielhp/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk" 1725126041 11524 38ee159fd2a2343870490c70e5b60d25 ""
-  "/media/danielhp/DATA/Escuela/C. Computación/Investigación/Colin-Sequence/jce/jcereport/jcematcom.tex" 1729910686 21839 7852c6bdf99dc39a7fa5b78d82265749 ""
+  "/media/danielhp/DATA/Escuela/C. Computación/Investigación/Colin-Sequence/jce/jcereport/Identifying Elenas.tex" 1729911560 21839 7852c6bdf99dc39a7fa5b78d82265749 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0700.tfm" 1136768653 1536 73da8e8f1d2a4c957d51ca133585586b ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -106,6 +106,7 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1685568860 128028 f533b797fba58d231669ea19e894e23e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1710446285 4850205 dce2d7021669d03cb436ec914d5b521e ""
+  "Identifying Elenas.tex" 1729911560 21839 7852c6bdf99dc39a7fa5b78d82265749 ""
   "assets/energy_hist.png" 1729897724 73460 2e09e48594b4ef965b06204c901ab594 ""
   "assets/frequencyco.png" 1729897216 35666 d110f0951e7529cea0a542f6d72d2a11 ""
   "assets/frequencylin.png" 1729897201 39147 f00aedb368a213ec55d336678a0a9fc7 ""
@@ -115,12 +116,11 @@
   "assets/peaks_before.png" 1729905305 126965 3ec9b8b9e236b898f36f49c8a578140a ""
   "assets/sequence.png" 1729905210 87300 e8adb83f29eb16a3da5bbc5d26a5c0d9 ""
   "assets/temp_energy.png" 1729905414 36237 a87b16dbfaf9a5b31cd0eae5630e70dc ""
-  "build/jcematcom.aux" 1729910688 3930 081809d56b3c868ff033424241cb90b0 "pdflatex"
-  "build/jcematcom.out" 1729910688 52 9243d3d63b9d4f1bc9843cb83a90418a "pdflatex"
+  "build/Identifying Elenas.aux" 1729911668 3930 081809d56b3c868ff033424241cb90b0 "pdflatex"
+  "build/Identifying Elenas.out" 1729911668 52 9243d3d63b9d4f1bc9843cb83a90418a "pdflatex"
   "build/jcematcom.sty" 1725968299 12211 19d2dc953da13398ceaac43a75a5d0ce ""
-  "jcematcom.tex" 1729910686 21839 7852c6bdf99dc39a7fa5b78d82265749 ""
   (generated)
-  "build/jcematcom.out"
-  "build/jcematcom.aux"
-  "build/jcematcom.log"
-  "build/jcematcom.pdf"
+  "build/Identifying Elenas.log"
+  "build/Identifying Elenas.pdf"
+  "build/Identifying Elenas.out"
+  "build/Identifying Elenas.aux"

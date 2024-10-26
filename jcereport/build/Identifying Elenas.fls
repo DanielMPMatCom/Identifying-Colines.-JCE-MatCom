@@ -3,8 +3,8 @@ INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /media/danielhp/DATA/Escuela/C. Computación/Investigación/Colin-Sequence/jce/jcereport/jcematcom.tex
-OUTPUT build/jcematcom.log
+INPUT /media/danielhp/DATA/Escuela/C. Computación/Investigación/Colin-Sequence/jce/jcereport/Identifying Elenas.tex
+OUTPUT build/Identifying Elenas.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
@@ -114,9 +114,9 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
-INPUT build/jcematcom.aux
-INPUT build/jcematcom.aux
-OUTPUT build/jcematcom.aux
+INPUT build/Identifying Elenas.aux
+INPUT build/Identifying Elenas.aux
+OUTPUT build/Identifying Elenas.aux
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
@@ -133,14 +133,14 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
-INPUT build/jcematcom.out
-INPUT build/jcematcom.out
-INPUT build/jcematcom.out
-INPUT build/jcematcom.out
-OUTPUT build/jcematcom.pdf
-INPUT build/jcematcom.out
-INPUT build/jcematcom.out
-OUTPUT build/jcematcom.out
+INPUT build/Identifying Elenas.out
+INPUT build/Identifying Elenas.out
+INPUT build/Identifying Elenas.out
+INPUT build/Identifying Elenas.out
+OUTPUT build/Identifying Elenas.pdf
+INPUT build/Identifying Elenas.out
+INPUT build/Identifying Elenas.out
+OUTPUT build/Identifying Elenas.out
 INPUT /usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
@@ -196,9 +196,9 @@ INPUT ./assets/frequencylin.png
 INPUT assets/frequencyco.png
 INPUT ./assets/frequencyco.png
 INPUT ./assets/frequencyco.png
-INPUT build/jcematcom.aux
-INPUT build/jcematcom.out
-INPUT build/jcematcom.out
+INPUT build/Identifying Elenas.aux
+INPUT build/Identifying Elenas.out
+INPUT build/Identifying Elenas.out
 INPUT /home/danielhp/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk
 INPUT /home/danielhp/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
