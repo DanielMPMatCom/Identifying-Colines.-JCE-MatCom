@@ -224,8 +224,8 @@ micrófonos.\\
 \textbf{Problema Tratado}\\
 
 
-La rana \textit{Eleutherodactylus eileenae} (Elena) 
-es una especie endémica de Cuba. 
+La rana \textit{Eleutherodactylus eileenae} (Elena)  
+es una especie endémica de Cuba \cite{elena}. 
 Su canto (Colín) es característico y se compone de dos 
 partes: una señal con frecuencia baja que 
 denominaremos CO y una con frecuencia alta que 
@@ -262,14 +262,14 @@ micrófonos véase la Figura \ref{fig:mics}
     \label{fig:mics}
 \end{figure}
 
-Se cuenta con el dataset de las grabaciones hechas por los 9 micrófonos. 
+Se cuenta con el \textit{dataset} de las grabaciones hechas por los 9 micrófonos. 
 Estas se realizaron durante 3 días, a partir de las 18:00 hasta las 06:00 horas del día siguiente,
 donde de cada hora se registraron 58 minutos y se descansaron 2. 
 Los dispositivos se activaron remotamente y al mismo tiempo. 
 Para lo que se expone en el presente informe, se utilizó la información
 captada el día 21 de octubre de 2023 a las 19:00 horas.
 En gran parte de la investigación se trabajará cada audio como el mel-espectrograma 
-correspondiente. Los parámetros utilizados para la obtención de cada uno fueron los siguientes:
+correspondiente \cite{mel}. Los parámetros utilizados para la obtención de cada uno fueron los siguientes:
 
 \begin{itemize}
 	\item hop\_length: 512
@@ -297,7 +297,7 @@ Fundamentalmente se debe garantizar un alto grado de sincronización.
 A pesar de que las grabaciones comenzaron a la misma hora, existe un \textit{lag} no 
 despreciable entre ellas, cosa que perjudica el análisis en cuestión. 
 Para corregir dicho error se diseñó un proceso semi-automático que se sustenta
-en el método conocido de \textbf{Correlación Cruzada}. El plan consiste en 
+en el método conocido de \textbf{Correlación Cruzada} \cite{cross_corr}. El plan consiste en 
 la alineación de los archivos con base en un pivote que debe ser seleccionado.
 Esto se lleva a cabo mediante el cálculo de las energías temporales a partir de los mel-espectrogramas,
 la identificación de los momentos de pico de energía, la aplicación de \textbf{Correlación Cruzada} y 
@@ -463,7 +463,24 @@ buscando baja superposición y tal vez mayor distinguibilidad.
 El análisis de dicha hipótesis, la estadística de los coros,
 un estudio de causalidad, son algunas de las líneas futuras de esta investigación. 
 El código fuente de este trabajo puede ser encontrado en el siguiente repositorio de GitHub:
-\href{https://github.com/DanielMPMatCom/Identifying-Elenas.-JCE-MatCom.git}{Identifying Elenas. JCE MatCom}
+\href{https://github.com/DanielMPMatCom/Identifying-Elenas.-JCE-MatCom.git}{Identifying Elenas. JCE MatCom}\\
+
+
+Agradecimientos al Dr. Milton Borroto por su asesoria con la alineacion y deteccion de las ranas y al Dr. Roberto Alonso por sus consejos sobre el comportamiento de la especie y por proveernos de los datos.
+
+\begin{thebibliography}{}
+	
+	\bibitem{elena} Alonso, R., Rodríguez-Gómez, A., \& Estrada, A. R. (2001). Patrones de actividad acústica y trófica de machos cantores de Eleutherodactylus eileenae (Anura: Leptodactylidae). Revista española de herpetología, 15(2001), 45-52.
+
+	
+	\bibitem{mel} Centic Murcia. (n.d.). Mel Spectogram. Curso de Ciencia de Datos. \href{https://centicmurcia.github.io/curso-ciencia-datos/3.6-audio/1\%20-\%20Mel\%20Spectogram/}{https://centicmurcia.github.io/curso-ciencia-datos/3.6-audio/1\%20-\%20Mel\%20Spectogram/}
+	
+	\sloppypar
+	\bibitem{cross_corr} Bourke, P. (1996). Cross correlation. Cross Correlation”, Auto Correlation—2D Pattern Identification, 596.
+  
+
+\end{thebibliography}
+	  
 
 
 %===================================================================================

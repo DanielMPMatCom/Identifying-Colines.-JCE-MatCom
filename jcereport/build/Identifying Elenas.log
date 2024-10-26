@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.3.14)  26 OCT 2024 02:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.3.14)  26 OCT 2024 19:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -324,12 +324,12 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count282
 \l__pdf_internal_box=\box49
 ) (build/Identifying Elenas.aux
-LaTeX Info: Redefining \. on input line 25.
-LaTeX Info: Redefining \% on input line 25.
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 LaTeX Info: Redefining \. on input line 27.
 LaTeX Info: Redefining \% on input line 27.
+LaTeX Info: Redefining \. on input line 28.
+LaTeX Info: Redefining \% on input line 28.
 )
 \openout1 = `"Identifying Elenas.aux"'.
 
@@ -465,11 +465,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 224--225
  []
 
 
-Underfull \hbox (badness 3895) in paragraph at lines 227--235
-[]\OT1/cmr/m/n/10 La ra-na \OT1/cmr/m/it/10 Eleut-he-ro-dacty-lus ei-lee-nae \OT1/cmr/m/n/10 (Ele-na) es
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 227--235
 
  []
@@ -485,16 +480,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 236--245
 
  []
 
-<assets/mic_map.jpg, id=37, 1284.8pt x 722.7pt>
+<assets/mic_map.jpg, id=39, 1284.8pt x 722.7pt>
 File: assets/mic_map.jpg Graphic file (type jpg)
 <use assets/mic_map.jpg>
 Package pdftex.def Info: assets/mic_map.jpg  used on input line 260.
 (pdftex.def)             Requested size: 236.84843pt x 133.22322pt.
-<assets/mel-spectrogram.png, id=39, 552.8655pt x 325.9377pt>
+<assets/mel-spectrogram.png, id=42, 552.8655pt x 325.9377pt>
 File: assets/mel-spectrogram.png Graphic file (type png)
 <use assets/mel-spectrogram.png>
 Package pdftex.def Info: assets/mel-spectrogram.png  used on input line 290.
 (pdftex.def)             Requested size: 236.84843pt x 139.63324pt.
+
+Underfull \hbox (badness 1014) in paragraph at lines 295--305
+\OT1/cmr/m/n/10 de los ar-chi-vos con ba-se en un pi-vo-te que de-be
+ []
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 295--305
 
@@ -551,7 +551,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 340--341
 
  []
 
-<assets/temp_energy.png, id=50, 859.2903pt x 426.393pt>
+<assets/temp_energy.png, id=56, 859.2903pt x 426.393pt>
 File: assets/temp_energy.png Graphic file (type png)
 <use assets/temp_energy.png>
 Package pdftex.def Info: assets/temp_energy.png  used on input line 344.
@@ -566,7 +566,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 352--354
 
  []
 
-<assets/energy_hist.png, id=52, 1146.9249pt x 1148.3703pt>
+<assets/energy_hist.png, id=58, 1146.9249pt x 1148.3703pt>
 File: assets/energy_hist.png Graphic file (type png)
 <use assets/energy_hist.png>
 Package pdftex.def Info: assets/energy_hist.png  used on input line 357.
@@ -589,7 +589,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 365--370
 
  []
 
-<assets/peaks_before.png, id=54, 865.7946pt x 426.393pt>
+<assets/peaks_before.png, id=60, 865.7946pt x 426.393pt>
 File: assets/peaks_before.png Graphic file (type png)
 <use assets/peaks_before.png>
 Package pdftex.def Info: assets/peaks_before.png  used on input line 373.
@@ -599,7 +599,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 378--379
 
  []
 
-<assets/peaks_after.png, id=56, 865.7946pt x 426.393pt>
+<assets/peaks_after.png, id=62, 865.7946pt x 426.393pt>
 File: assets/peaks_after.png Graphic file (type png)
 <use assets/peaks_after.png>
 Package pdftex.def Info: assets/peaks_after.png  used on input line 389.
@@ -631,17 +631,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 427--428
 
  []
 
-<assets/sequence.png, id=73, 714.0276pt x 674.2791pt>
+<assets/sequence.png, id=79, 714.0276pt x 674.2791pt>
 File: assets/sequence.png Graphic file (type png)
 <use assets/sequence.png>
 Package pdftex.def Info: assets/sequence.png  used on input line 434.
 (pdftex.def)             Requested size: 236.84843pt x 223.66512pt.
-<assets/frequencylin.png, id=76, 412.6617pt x 328.8285pt>
+<assets/frequencylin.png, id=82, 412.6617pt x 328.8285pt>
 File: assets/frequencylin.png Graphic file (type png)
 <use assets/frequencylin.png>
 Package pdftex.def Info: assets/frequencylin.png  used on input line 451.
 (pdftex.def)             Requested size: 236.84843pt x 188.73372pt.
-<assets/frequencyco.png, id=77, 406.1574pt x 328.8285pt>
+<assets/frequencyco.png, id=83, 406.1574pt x 328.8285pt>
 File: assets/frequencyco.png Graphic file (type png)
 <use assets/frequencyco.png>
 Package pdftex.def Info: assets/frequencyco.png  used on input line 458.
@@ -649,47 +649,66 @@ Package pdftex.def Info: assets/frequencyco.png  used on input line 458.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 474.
+
+Underfull \hbox (badness 10000) in paragraph at lines 463--467
+
+ []
+
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/it' instead on input line 474.
+(Font)              using `OT1/cmr/m/it' instead on input line 470.
 
 [4 <./assets/peaks_after.png> <./assets/sequence.png> <./assets/frequencylin.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 476--477
+[]\OT1/cmr/m/n/10 Centic Mur-cia. (n.d.). Mel Spec-to-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 476--477
+\OT1/cmr/m/n/10 gram. Cur-so de Cien-cia de Da-tos.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 476--477
+[][]\OT1/cmr/m/n/10 https://centicmurcia.github.io/curso-ciencia-
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 491.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/it' instead on input line 474.
+(Font)              using `OT1/cmr/m/it' instead on input line 491.
 
 [5
 
  <./assets/frequencyco.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 474.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 491.
  (build/Identifying Elenas.aux
-LaTeX Info: Redefining \. on input line 25.
-LaTeX Info: Redefining \% on input line 25.
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 LaTeX Info: Redefining \. on input line 27.
 LaTeX Info: Redefining \% on input line 27.
+LaTeX Info: Redefining \. on input line 28.
+LaTeX Info: Redefining \% on input line 28.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 474.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 474.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 491.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 491.
 Package rerunfilecheck Info: File `"Identifying Elenas".out' has not changed.
 (rerunfilecheck)             Checksum: 9243D3D63B9D4F1BC9843CB83A90418A;52.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 474.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 491.
  ) 
 Here is how much of TeX's memory you used:
- 10421 strings out of 483121
- 156324 string characters out of 5964354
- 438947 words of memory out of 5000000
- 25250 multiletter control sequences out of 15000+600000
+ 10428 strings out of 483121
+ 156392 string characters out of 5964354
+ 439026 words of memory out of 5000000
+ 25253 multiletter control sequences out of 15000+600000
  538546 words of font info for 46 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 46i,6n,42p,378b,413s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 46i,6n,42p,403b,413s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/danielhp/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </home/danielhp/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on "build/Identifying Elenas.pdf" (5 pages, 752624 bytes).
+Output written on "build/Identifying Elenas.pdf" (5 pages, 755132 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 111 compressed objects within 2 object streams
- 16 named destinations out of 1000 (max. 500000)
+ 163 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
+ 20 named destinations out of 1000 (max. 500000)
  54 words of extra memory for PDF output out of 10000 (max. 10000000)
 
