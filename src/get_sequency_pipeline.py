@@ -6,7 +6,8 @@ import os
 import pandas as pd
 
 
-def get_sequency_pipeline(datapath: str,
+def get_sequency_pipeline(
+    datapath: str,
     linpath: str = None,
     copath: str = None,
     destination_path_lin: str = None,
@@ -15,12 +16,12 @@ def get_sequency_pipeline(datapath: str,
     sample_rate: int = -1,
     plots: bool = True,
     verbose: bool = True,
-    attempts: int = 10
+    attempts: int = 10,
 ) -> None:
     """
     Processes the given data to generate and analyze sequences, dividing them into LIN and CO categories,
     calculating temporal energies, plotting histograms, and building tries.
-    
+
     Parameters:
     - datapath (str): Path to the input data.
     - linpath (str, optional): Path to the LIN data. Defaults to None.
@@ -31,12 +32,11 @@ def get_sequency_pipeline(datapath: str,
     - sample_rate (int, optional): Sample rate for plotting sequences. Defaults to -1.
     - plots (bool, optional): Whether to plot the sequences. Defaults to True.
     - verbose (bool, optional): Whether to print verbose output. Defaults to True.
-    - attempts (int, optional): The number of times the algorithm should be executed. 
-    
+    - attempts (int, optional): The number of times the algorithm should be executed.
+
     Returns:
     None
     """
-
 
     if verbose:
         print(
@@ -70,17 +70,17 @@ def get_sequency_pipeline(datapath: str,
         )
     limits_co = plot_energies_histogram_and_get_bin_width(temporal_energies_co)
 
-    if verbose:
-        print(
-            "---------------------------CALCULATING ENERGY MEANS FOR LIN--------------------------"
-        )
-    means_lin = get_energy_means(temporal_energies_lin)
+    # if verbose:
+    #     print(
+    #         "---------------------------CALCULATING ENERGY MEANS FOR LIN--------------------------"
+    #     )
+    # means_lin = get_energy_means(temporal_energies_lin)
 
-    if verbose:
-        print(
-            "---------------------------CALCULATING ENERGY MEANS FOR CO--------------------------"
-        )
-    means_co = get_energy_means(temporal_energies_co)
+    # if verbose:
+    #     print(
+    #         "---------------------------CALCULATING ENERGY MEANS FOR CO--------------------------"
+    #     )
+    # means_co = get_energy_means(temporal_energies_co)
 
     if verbose:
         print(
@@ -128,8 +128,8 @@ def get_sequency_pipeline(datapath: str,
             hop_length=hop_length,
             sample_rate=sample_rate,
             attempts=attempts,
-            xlim_left=100,
-            xlim_right=150,
+            xlim_left=50,
+            xlim_right=60,
         )
 
 
@@ -478,7 +478,8 @@ def plot_sequences(
         arrays_lin = tries_lin[k]
         arrays_co = tries_co[k]
 
-        colors = plt.cm.get_cmap("tab10", 9).colors
+        # colors = plt.cm.get_cmap('tab10', 9).colors
+        colors = ["r", "g", "b", "c", "m", "y", "k", "purple", "orange"]
 
         # Create a figure with 2 subplots
         _, axs = plt.subplots(2, 1, figsize=(10, 10))
@@ -531,26 +532,26 @@ def plot_sequences(
         plt.show()
 
 
-datapath = "../data/aligned/all"
-linpath = "../data/aligned/lin"
-copath = "../data/aligned/co"
+datapath = '../data/aligned/all'
+linpath = '../data/aligned/lin'
+copath = '../data/aligned/co'
 
 
-destination_path_lin = f"../outputs/energy/tries_lin"
-destination_path_co = f"../outputs/energy/tries_co"
+destination_path_lin = f'../outputs/energy/tries_lin'
+destination_path_co = f'../outputs/energy/tries_co'
 
 hop_length = 512
 sample_rate = 96000
 
 get_sequency_pipeline(
     datapath=datapath,
-    # linpath=linpath,
-    # copath=copath,
+    linpath=linpath,
+    copath=copath,
     destination_path_lin=destination_path_lin,
     destination_path_co=destination_path_co,
     hop_length=hop_length,
     sample_rate=sample_rate,
     plots=True,
     verbose=True,
-    attempts=10
+    attempts=10,
 )

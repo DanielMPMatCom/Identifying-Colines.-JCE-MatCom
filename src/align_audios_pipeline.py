@@ -12,7 +12,7 @@ def align_audios_pipeline(
     data_destination_path: str = None,
     plots: bool = True,
     verbose: bool = True,
-):
+) -> list:
     """
     Aligns multiple audio files based on a pivot audio file by preprocessing, calculating temporal energies, identifying energy peaks,
     and applying calculated lags to synchronize the audio files.
@@ -45,8 +45,8 @@ def align_audios_pipeline(
         )
     saved_files_path = preprocess_data(
         data_source_path=data_source_path,
-        lowest_frec_cut=100,
-        highest_frec_cut=104,
+        lowest_frec_cut=113,
+        highest_frec_cut=117,
         data_destination_path=preprocessed_data_path,
     )
 
@@ -67,6 +67,16 @@ def align_audios_pipeline(
             )
         plot_energies(temporal_energy_per_audio=temporal_energy_per_audio)
 
+    # Calculating thresholds to eliminate noise
+    energy_limits = plot_energies_histogram_and_get_bin_width(
+        temporal_energies=temporal_energy_per_audio
+    )
+
+    # Filtering energies
+    temporal_energy_per_audio = filter_temporal_energies(
+        temporal_energy_per_audio=temporal_energy_per_audio, energy_limits=energy_limits
+    )
+
     # Identify energy peaks in the temporal energies
     if verbose:
         print(
@@ -85,8 +95,8 @@ def align_audios_pipeline(
         plot_energy_peaks(
             energy_peaks_per_audio=energy_peaks_per_audio,
             temporal_energy_per_audio=temporal_energy_per_audio,
-            xlim_left=5000,
-            xlim_right=15000,
+            # xlim_left=5000,
+            # xlim_right=15000,
         )
         if verbose:
             print(
@@ -95,8 +105,8 @@ def align_audios_pipeline(
         plot_energy_peaks_log(
             energy_peaks_per_audio=energy_peaks_per_audio,
             temporal_energy_per_audio=temporal_energy_per_audio,
-            xlim_left=5000,
-            xlim_right=15000,
+            # xlim_left=5000,
+            # xlim_right=15000,
         )
         if verbose:
             print(
@@ -104,8 +114,9 @@ def align_audios_pipeline(
             )
         plot_energy_peaks_momments(
             energy_peaks_per_audio=energy_peaks_per_audio,
-            xlim_left=5000,
-            xlim_right=15000,
+            pivot_file_name=pivot_file_name,
+            xlim_left=70000,
+            xlim_right=75000,
         )
 
     # Calculate the lags required to align the audio files based on a pivot audio file
@@ -113,7 +124,7 @@ def align_audios_pipeline(
         print(
             "-------------------------------CALCULATING LAGS FOR ALIGNMENT-------------------------"
         )
-    lags = get_lags(
+    lags, peaks_array_per_audio = get_lags(
         energy_peaks_per_audio=energy_peaks_per_audio,
         temporal_energy_per_audio=temporal_energy_per_audio,
         pivot_audio=pivot_file_name,
@@ -126,10 +137,21 @@ def align_audios_pipeline(
                 "------------APPLYING LAGS TO ENERGY PEAKS AND PLOTTING ALIGNED PEAKS----------------"
             )
         aligned_energy_peaks_per_audio = apply_lags_to_files(
-            lags=lags, files_to_be_synchronized=energy_peaks_per_audio
+            lags=lags, files_to_be_synchronized=peaks_array_per_audio
         )
+
+        new_peaks_momments = {}
+        for item in aligned_energy_peaks_per_audio:
+            momments = []
+            for i, peak in enumerate(aligned_energy_peaks_per_audio[item]):
+                if peak != 0:
+                    momments.append(i)
+            new_peaks_momments[item] = momments
         plot_energy_peaks_momments(
-            aligned_energy_peaks_per_audio, xlim_left=5000, xlim_right=15000
+            energy_peaks_per_audio=new_peaks_momments,
+            pivot_file_name=pivot_file_name,
+            xlim_left=70000,
+            xlim_right=75000,
         )
 
     # Apply the lags to the original audio files to produce aligned audio files
@@ -253,6 +275,79 @@ def plot_energies(temporal_energy_per_audio: dict) -> None:
         plt.show()
 
 
+def plot_energies_histogram_and_get_bin_width(temporal_energies: dict) -> dict:
+    """
+    Plots histograms of temporal energies and returns a dictionary with bin widths.
+
+    Parameters:
+    -----------
+    temporal_energies : dict
+        A dictionary where keys are filenames and values are lists of temporal energies.
+
+    Returns:
+    --------
+    dict
+        A dictionary where keys are filenames and values are the bin widths.
+    """
+
+    # Create a figure with 9 subplots and a size of 16x16 inches
+    fig, axs = plt.subplots(3, 3, figsize=(16, 16))
+
+    # Flatten the array of axes to iterate over it
+    axs = axs.flatten()
+
+    limits = {}
+
+    count = 1
+    # Iterate over the files and axes at the same time
+    for file, ax in zip(temporal_energies, axs):
+        # Calculate the bin width
+        bin_width = (max(temporal_energies[file]) - min(temporal_energies[file])) / 50
+        limits[file] = bin_width
+        print(f"Bin width for {count}: {bin_width}")
+
+        # Create a histogram of the energies for this file
+        ax.hist(temporal_energies[file], bins=50)
+
+        # Configure the plot
+        ax.set(
+            xlabel="Index", ylabel="Frequency", title=f"Energy histogram for {count}"
+        )
+        ax.set_yscale("log")
+        count += 1
+
+    # Show the plot
+    plt.tight_layout()
+    plt.show()
+
+    # Return the dictionary with bin widths
+    return limits
+
+
+def filter_temporal_energies(
+    temporal_energy_per_audio: dict, energy_limits: dict
+) -> dict:
+    """
+    Filtra las energías temporales en el diccionario temporal_energy_per_audio según los límites en energy_limits.
+
+    Args:
+        temporal_energy_per_audio (dict): Diccionario donde las claves son nombres de archivos y los valores son arrays de energías temporales.
+        energy_limits (dict): Diccionario donde las claves son nombres de archivos y los valores son los límites de energía.
+
+    Returns:
+        dict: Diccionario con las energías temporales filtradas.
+    """
+    filtered_temporal_energy_per_audio = {}
+
+    for file, energy_array in temporal_energy_per_audio.items():
+        limit = energy_limits.get(file, None)
+        if limit is not None:
+            filtered_energy_array = np.where(energy_array < limit, 0, energy_array)
+            filtered_temporal_energy_per_audio[file] = filtered_energy_array
+
+    return filtered_temporal_energy_per_audio
+
+
 def get_energy_peaks(temporal_energy_per_audio: dict) -> dict:
     """
     Identify and filter energy peaks in audio signals.
@@ -285,8 +380,8 @@ def get_energy_peaks(temporal_energy_per_audio: dict) -> dict:
 def plot_energy_peaks(
     energy_peaks_per_audio: dict,
     temporal_energy_per_audio: dict,
-    xlim_left: int,
-    xlim_right: int,
+    xlim_left: int = -1,
+    xlim_right: int = -1,
 ) -> None:
     """
     Plots the energy peaks for multiple audio files.
@@ -333,15 +428,22 @@ def plot_energy_peaks(
         plt.ylabel("Energy")
         plt.title(f"Temporal Energy Peaks for {file}")
         plt.tight_layout()
-        plt.xlim(xlim_left, xlim_right)
+        if xlim_left != -1 and xlim_right != -1:
+            plt.xlim(xlim_left, xlim_right)
+        elif xlim_left != -1:
+            plt.xlim(
+                xlim_left,
+            )
+        elif xlim_right != -1:
+            plt.xlim(xlim_right)
         plt.show()
 
 
 def plot_energy_peaks_log(
     energy_peaks_per_audio: dict,
     temporal_energy_per_audio: dict,
-    xlim_left: int,
-    xlim_right: int,
+    xlim_left: int = -1,
+    xlim_right: int = -1,
 ) -> None:
     """
     Plots the energy peaks of audio signals on a logarithmic scale.
@@ -390,12 +492,22 @@ def plot_energy_peaks_log(
         plt.ylabel("Energy (logarithmic scale)")
         plt.title(f"Temporal Energy Peaks for {file}")
         plt.tight_layout()
-        plt.xlim(xlim_left, xlim_right)
+        if xlim_left != -1 and xlim_right != -1:
+            plt.xlim(xlim_left, xlim_right)
+        elif xlim_left != -1:
+            plt.xlim(
+                xlim_left,
+            )
+        elif xlim_right != -1:
+            plt.xlim(xlim_right)
         plt.show()
 
 
 def plot_energy_peaks_momments(
-    energy_peaks_per_audio: dict, xlim_left: int, xlim_right: int
+    energy_peaks_per_audio: dict,
+    pivot_file_name: str,
+    xlim_left: int = -1,
+    xlim_right: int = -1,
 ) -> None:
     """
     Plots the energy peaks moments for multiple audio files.
@@ -427,9 +539,7 @@ def plot_energy_peaks_momments(
 
         # Plot vertical lines at the moments of energy peaks
         for peak in peaks:
-            if (
-                file == "20231021_050000i.WAV.npy"
-            ):  # If the file is 'i', use a solid line and black color
+            if file == pivot_file_name:
                 plt.axvline(
                     x=peak,
                     color="black",
@@ -453,7 +563,14 @@ def plot_energy_peaks_momments(
     plt.title("Energy Peaks Moments")
     plt.legend(loc="upper right", bbox_to_anchor=(1.15, 1))
     plt.tight_layout()
-    plt.xlim(xlim_left, xlim_right)
+    if xlim_left != -1 and xlim_right != -1:
+        plt.xlim(xlim_left, xlim_right)
+    elif xlim_left != -1:
+        plt.xlim(
+            xlim_left,
+        )
+    elif xlim_right != -1:
+        plt.xlim(xlim_right)
     plt.show()
 
 
@@ -479,7 +596,7 @@ def get_lags(
         # Create the array of peaks
         peaks_array = np.zeros_like(temporal_energy_per_audio[file])
         for peak in peaks:
-            peaks_array[max(0, peak - 4) : min(len(peaks_array), peak + 5)] = 1
+            peaks_array[max(0, peak - 2) : min(len(peaks_array), peak + 3)] = 1
 
         peaks_array_per_audio[file] = peaks_array
 
@@ -494,81 +611,17 @@ def get_lags(
 
             # Find the lag that maximizes the cross-correlation
             lag = np.argmax(correlation) - (len(pivot_array) - 1)
+
+            # Limit the lag between -500 and 500
+            # lag = max(min(lag, 500), -500)
+
             lags[file] = lag
 
     # Print the lags
     for file, lag in lags.items():
         print(f"Lag between {pivot_audio} and {file}: {lag}")
 
-    return lags
-
-
-def apply_lags_to_saved_files(
-    lags: dict, path_to_files_to_be_synchronized: str, data_destination_path: str = None
-) -> dict:
-    """
-    Apply time lags to .npy files in a specified directory and save the adjusted files to a new directory.
-
-    Parameters:
-    lags (dict): A dictionary where keys are filenames and values are the lag values to be applied.
-    path_to_files_to_be_synchronized (str): The path to the directory containing the .npy files to be synchronized.
-
-    Returns:
-    dict: A dictionary where keys are filenames and values are the adjusted numpy arrays.
-    """
-
-    # List all .npy files in the specified directory
-    files = [
-        f for f in os.listdir(path_to_files_to_be_synchronized) if f.endswith(".npy")
-    ]
-
-    # Define the directory to save the processed files
-    if data_destination_path is not None:
-        aligned_files = data_destination_path
-    else:
-        aligned_files = f"{os.path.dirname(os.path.abspath(__file__))}/aligned/all"
-
-    # Create the directory if it doesn't exist
-    os.makedirs(aligned_files, exist_ok=True)
-
-    aligned_files_dict = {}
-
-    # Process each file
-    for file in files:
-        # Load the .npy file
-        file_data = np.load(os.path.join(path_to_files_to_be_synchronized, file))
-
-        # Check if the file has an associated lag value
-        if file in lags:
-            lag = lags[file]
-            # If the lag is positive, pad the beginning of the array and truncate the end
-            if lag > 0:
-                if file_data.ndim == 1:
-                    file_data = np.pad(file_data, (lag, 0), "constant")[
-                        : len(file_data)
-                    ]
-                elif file_data.ndim == 2:
-                    file_data = np.pad(file_data, ((lag, 0), (0, 0)), "constant")[
-                        : len(file_data), :
-                    ]
-            # If the lag is negative, pad the end of the array and truncate the beginning
-            elif lag < 0:
-                if file_data.ndim == 1:
-                    file_data = np.pad(file_data, (0, -lag), "constant")[
-                        -len(file_data) :
-                    ]
-                elif file_data.ndim == 2:
-                    file_data = np.pad(file_data, ((0, -lag), (0, 0)), "constant")[
-                        -len(file_data) :, :
-                    ]
-
-        # Save the processed data to the new directory
-        np.save(os.path.join(aligned_files, file), file_data)
-
-        aligned_files_dict[file] = file_data
-
-    # Return the modified dictionary with adjusted peaks
-    return aligned_files_dict
+    return lags, peaks_array_per_audio
 
 
 def apply_lags_to_files(lags: dict, files_to_be_synchronized: dict) -> dict:
@@ -619,9 +672,77 @@ def apply_lags_to_files(lags: dict, files_to_be_synchronized: dict) -> dict:
     return new_file_to_be_synchronized
 
 
+def apply_lags_to_saved_files(
+    lags: dict, path_to_files_to_be_synchronized: str, data_destination_path: str = None
+) -> dict:
+    """
+    Apply time lags to .npy files and save the synchronized files to a specified directory.
+    Parameters:
+    lags (dict): A dictionary where keys are filenames and values are the lag values to be applied.
+    path_to_files_to_be_synchronized (str): The path to the directory containing the .npy files to be synchronized.
+    data_destination_path (str, optional): The path to the directory where the synchronized files will be saved.
+                                           If None, a default directory 'aligned/all' will be used.
+    Returns:
+    dict: A dictionary where keys are filenames and values are the processed numpy arrays with applied lags.
+    """
+
+    # List all .npy files in the specified directory
+    files = [
+        f for f in os.listdir(path_to_files_to_be_synchronized) if f.endswith(".npy")
+    ]
+
+    # Define the directory to save the processed files
+    if data_destination_path is not None:
+        aligned_files = data_destination_path
+    else:
+        aligned_files = f"{os.path.dirname(os.path.abspath(__file__))}/aligned/all"
+
+    # Create the directory if it doesn't exist
+    os.makedirs(aligned_files, exist_ok=True)
+
+    aligned_files_dict = {}
+
+    # Process each file
+    for file in files:
+        # Load the .npy file
+        file_data = np.load(os.path.join(path_to_files_to_be_synchronized, file))
+
+        # Check if the file has an associated lag value
+        if file in lags:
+            lag = lags[file]
+            # If the lag is positive, pad the beginning of the array and truncate the end
+            if lag > 0:
+                if file_data.ndim == 1:
+                    file_data = np.pad(file_data, (lag, 0), "constant")[
+                        : len(file_data)
+                    ]
+                elif file_data.ndim == 2:
+                    file_data = np.pad(file_data, ((0, 0), (lag, 0)), "constant")[
+                        : len(file_data), :
+                    ]
+            # If the lag is negative, pad the end of the array and truncate the beginning
+            elif lag < 0:
+                if file_data.ndim == 1:
+                    file_data = np.pad(file_data, (0, -lag), "constant")[
+                        -len(file_data) :
+                    ]
+                elif file_data.ndim == 2:
+                    file_data = np.pad(file_data, ((0, 0), (0, -lag)), "constant")[
+                        -len(file_data) :, :
+                    ]
+
+        # Save the processed data to the new directory
+        np.save(os.path.join(aligned_files, file), file_data)
+
+        aligned_files_dict[file] = file_data
+
+    # Return the modified dictionary with adjusted peaks
+    return aligned_files_dict
+
+
 data_source_path = "../data/not_aligned/all"
-pivot_file_name = "20231021_050000i.WAV.npy"
-preprocessed_data_path = "../data/highest_freq_lin"
+pivot_file_name = "20231021_190000h.npy"
+preprocessed_data_path = "../data/not_aligned/freq_cut"
 data_destination_path = "../data/aligned/all"
 
 
