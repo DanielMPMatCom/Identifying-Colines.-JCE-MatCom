@@ -226,10 +226,11 @@ def plot_frequency_graph(
 
         plt.scatter(miliseconds, non_zero_values, color=colors[i], label=f"Rana {i+1}")
 
-    plt.xlabel("Time (s)")
-    plt.ylabel("Frequency Band")
+    plt.xlabel("Time (s)", fontsize=14)
+    plt.ylabel("Frequency Band", fontsize=14)
     plt.legend(loc="lower right")
-    plt.title(graph_title)
+    plt.title(graph_title, fontsize=18)
+    plt.tick_params(axis='both', which='major', labelsize=12)  
     plt.xlim(xlim_left, xlim_right)
 
     plt.show()

@@ -443,18 +443,16 @@ def colin_sequence_by_energy(
     return tries_lin, tries_co
 
 
-def plot_sequences(
-    tries_lin: list,
-    tries_co: list,
-    hop_length: int,
-    sample_rate: int,
-    attempts: int,
-    xlim_left: int = -1,
-    xlim_right: int = -1,
-) -> None:
+def plot_sequences(tries_lin : list, 
+                   tries_co : list, 
+                   hop_length : int, 
+                   sample_rate : int, 
+                   attempts : int, 
+                   xlim_left : int = -1, 
+                   xlim_right : int = -1) -> None:
     """
     Plots sequences of linear and co energy values over time for multiple attempts.
-
+    
     Parameters:
     - tries_lin (list): A list of lists containing lin-energy values for each attempt.
     - tries_co (list): A list of lists containing co energy values for each attempt.
@@ -463,15 +461,16 @@ def plot_sequences(
     - attempts (int): The number of attempts to plot.
     - xlim_left (int, optional): The left limit for the x-axis. Defaults to -1 (no limit).
     - xlim_right (int, optional): The right limit for the x-axis. Defaults to -1 (no limit).
-
+    
     Returns:
     - None: This function does not return any value. It displays the plots.
-
+    
     The function creates a figure with two subplots, one for lin-energy values and one for co energy values.
     It plots the non-zero values of energy over time for each attempt, using different colors for each sequence.
     The y-axis is set to a logarithmic scale, and the x-axis represents time in seconds.
     """
 
+    
     time_interval = hop_length / sample_rate
 
     for k in range(attempts):
@@ -479,7 +478,8 @@ def plot_sequences(
         arrays_co = tries_co[k]
 
         # colors = plt.cm.get_cmap('tab10', 9).colors
-        colors = ["r", "g", "b", "c", "m", "y", "k", "purple", "orange"]
+        colors = ['r', 'g', 'b', 'c', 'm', 'y', 'k', 'purple', 'orange']
+
 
         # Create a figure with 2 subplots
         _, axs = plt.subplots(2, 1, figsize=(10, 10))
@@ -496,40 +496,31 @@ def plot_sequences(
             milliseconds_lin = non_zero_indexes_lin * time_interval
             milliseconds_co = non_zero_indexes_co * time_interval
 
-            axs[0].scatter(
-                milliseconds_lin,
-                non_zero_values_lin,
-                color=colors[i],
-                label=f"Frog {i+1}",
-            )
-            axs[1].scatter(
-                milliseconds_co,
-                non_zero_values_co,
-                color=colors[i],
-                label=f"Frog {i+1}",
-            )
+            axs[0].scatter(milliseconds_lin, non_zero_values_lin, color=colors[i], label=f'Frog {i+1}')
+            axs[1].scatter(milliseconds_co, non_zero_values_co, color=colors[i], label=f'Frog {i+1}')
 
-        axs[0].set_title("lin")
-        axs[1].set_title("co")
+        axs[0].set_title('lin', fontsize=14)
+        axs[1].set_title('co', fontsize=14)
 
         # Configure the plots
         for ax in axs:
-            ax.set_yscale("log")
-            ax.set_xlabel("Time (s)")
-            ax.set_ylabel("Energy")
-            ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
+            ax.set_yscale('log')
+            ax.set_xlabel('Time (s)', fontsize=12)
+            ax.set_ylabel('Energy', fontsize=14)
+            ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=12)
+            ax.tick_params(axis='both', which='major', labelsize=12)  
+
             if xlim_left != -1 and xlim_right == -1:
-                ax.set_xlim(
-                    xlim_left,
-                )
+                ax.set_xlim(xlim_left, )
             elif xlim_left != -1 and xlim_right != -1:
                 ax.set_xlim(xlim_left, xlim_right)
             elif xlim_left == -1 and xlim_right != -1:
                 ax.set_xlim(0, xlim_right)
 
-        plt.suptitle("Sequence")
+        plt.suptitle('Sequence', fontsize=18)
         # Show the plots
         plt.show()
+
 
 
 datapath = '../data/aligned/all'

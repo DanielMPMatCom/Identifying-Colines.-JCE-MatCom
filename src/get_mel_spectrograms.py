@@ -36,7 +36,13 @@ def plot_mel_spectrogram_graph_from_matrix(
 
         fig.colorbar(cax)
 
-        ax.set_title(f"Mel-spectrogram of {file}")
+        ax.set_xlabel("Time index", fontsize=14)
+
+        ax.set_ylabel("Frequency Band", fontsize=14)
+
+        ax.set_title(f"Mel-spectrogram of {file}", fontsize=18)
+
+        ax.tick_params(axis="both", which="major", labelsize=12)
 
         ax.set_xlim([xlim_left, xlim_right])
 

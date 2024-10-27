@@ -246,33 +246,34 @@ def get_temporal_energies(freq_cut_source_path: str) -> dict:
 def plot_energies(temporal_energy_per_audio: dict) -> None:
     """
     Plots the temporal energy of multiple audio files.
-
+    
     Parameters:
-    temporal_energy_per_audio (dict): A dictionary where the keys are filenames (str) and the values are lists
+    temporal_energy_per_audio (dict): A dictionary where the keys are filenames (str) and the values are lists 
     or arrays representing the temporal energy of the corresponding audio file.
-
+    
     Returns:
     None
     """
-
+  
     # Colors for the plots
     colors = plt.cm.viridis(np.linspace(0, 1, len(temporal_energy_per_audio.keys())))
-
+    
     for i, (file, temporal_energy) in enumerate(temporal_energy_per_audio.items()):
-
+        
         # Create a figure for each file
         plt.figure(figsize=(12, 6))
-
+        
         # Plot the temporal energy
         plt.plot(temporal_energy, color=colors[i], label=file)
-
+        
         # Configure the plot
-        plt.xlabel("Time Index")
-        plt.ylabel("Energy")
-        plt.title(f"Temporal Energy for {file}")
-        plt.legend(loc="upper right")
+        plt.xlabel('Time Index', fontsize=14)
+        plt.ylabel('Energy', fontsize=14)
+        plt.title(f'Temporal Energy for {file}', fontsize=18)
+        plt.legend(loc='upper right', fontsize=14)
+        plt.tick_params(axis='both', which='major', labelsize=12)  
         plt.tight_layout()
-        plt.show()
+        plt.show() 
 
 
 def plot_energies_histogram_and_get_bin_width(temporal_energies: dict) -> dict:
@@ -289,7 +290,7 @@ def plot_energies_histogram_and_get_bin_width(temporal_energies: dict) -> dict:
     dict
         A dictionary where keys are filenames and values are the bin widths.
     """
-
+    
     # Create a figure with 9 subplots and a size of 16x16 inches
     fig, axs = plt.subplots(3, 3, figsize=(16, 16))
 
@@ -304,16 +305,18 @@ def plot_energies_histogram_and_get_bin_width(temporal_energies: dict) -> dict:
         # Calculate the bin width
         bin_width = (max(temporal_energies[file]) - min(temporal_energies[file])) / 50
         limits[file] = bin_width
-        print(f"Bin width for {count}: {bin_width}")
+        print(f'Bin width for {count}: {bin_width}')
 
         # Create a histogram of the energies for this file
         ax.hist(temporal_energies[file], bins=50)
 
         # Configure the plot
-        ax.set(
-            xlabel="Index", ylabel="Frequency", title=f"Energy histogram for {count}"
-        )
-        ax.set_yscale("log")
+        ax.set_xlabel(xlabel='Index', fontsize=14)
+        ax.set_ylabel(ylabel='Frequency', fontsize=14)
+        ax.set_title(f'Energy histogram for {count}', fontsize=18)
+        ax.set_yscale('log')
+        ax.tick_params(axis='both', which='major', labelsize=12)  
+
         count += 1
 
     # Show the plot
@@ -377,15 +380,10 @@ def get_energy_peaks(temporal_energy_per_audio: dict) -> dict:
     return energy_peaks_per_audio
 
 
-def plot_energy_peaks(
-    energy_peaks_per_audio: dict,
-    temporal_energy_per_audio: dict,
-    xlim_left: int = -1,
-    xlim_right: int = -1,
-) -> None:
+def plot_energy_peaks(energy_peaks_per_audio : dict, temporal_energy_per_audio : dict, xlim_left : int = -1, xlim_right : int = -1) -> None:
     """
     Plots the energy peaks for multiple audio files.
-
+    
     Parameters:
     -----------
     energy_peaks_per_audio : dict
@@ -396,7 +394,7 @@ def plot_energy_peaks(
         The left limit for the x-axis of the plot.
     xlim_right : int
         The right limit for the x-axis of the plot.
-
+   
     Returns:
     --------
     None
@@ -408,48 +406,38 @@ def plot_energy_peaks(
 
     # Process the energy arrays to get the maximum points of the peaks
     for i, (file, peaks) in enumerate(energy_peaks_per_audio.items()):
-
+        
         plt.figure(figsize=(12, 6))
-
+        
         # Plot only the maximum points of the peaks and their 4 immediate points to the left and right
         for peak in peaks:
             # Get the indices of the points to plot
-            indexes = range(
-                max(0, peak - 4), min(len(temporal_energy_per_audio[file]), peak + 5)
-            )
-            plt.plot(
-                indexes,
-                temporal_energy_per_audio[file][indexes],
-                color=colors[i % len(colors)],
-            )
-
+            indexes = range(max(0, peak-4), min(len(temporal_energy_per_audio[file]), peak+5))
+            plt.plot(indexes, temporal_energy_per_audio[file][indexes], color=colors[i % len(colors)])
+        
         # Configure the plot
-        plt.xlabel("Time Index")
-        plt.ylabel("Energy")
-        plt.title(f"Temporal Energy Peaks for {file}")
+        plt.xlabel('Time Index', fontsize=14)
+        plt.ylabel('Energy', fontsize=14)
+        plt.title(f'Temporal Energy Peaks for {file}', fontsize=18)
+        plt.tick_params(axis='both', which='major', labelsize=12)  
         plt.tight_layout()
         if xlim_left != -1 and xlim_right != -1:
             plt.xlim(xlim_left, xlim_right)
         elif xlim_left != -1:
-            plt.xlim(
-                xlim_left,
-            )
+            plt.xlim(xlim_left,)
         elif xlim_right != -1:
             plt.xlim(xlim_right)
         plt.show()
 
+    
 
-def plot_energy_peaks_log(
-    energy_peaks_per_audio: dict,
-    temporal_energy_per_audio: dict,
-    xlim_left: int = -1,
-    xlim_right: int = -1,
-) -> None:
+
+def plot_energy_peaks_log(energy_peaks_per_audio : dict, temporal_energy_per_audio : dict, xlim_left : int = -1, xlim_right : int = -1) -> None:
     """
     Plots the energy peaks of audio signals on a logarithmic scale.
     This function takes in dictionaries containing energy peaks and temporal energy values for multiple audio files,
     and plots the energy peaks on a logarithmic scale. Each audio file's peaks are plotted with a unique color.
-
+    
     Parameters:
     -----------
     energy_peaks_per_audio : dict
@@ -460,7 +448,7 @@ def plot_energy_peaks_log(
         The left limit for the x-axis of the plot.
     xlim_right : int
         The right limit for the x-axis of the plot.
-
+    
     Returns:
     --------
     None
@@ -471,44 +459,33 @@ def plot_energy_peaks_log(
 
     # Process the energy arrays to get the maximum points of the peaks
     for i, (file, peaks) in enumerate(energy_peaks_per_audio.items()):
-
+        
         plt.figure(figsize=(12, 6))
-
+        
         # Plot only the maximum points of the peaks and their 4 immediate points to the left and right
         for peak in peaks:
             # Get the indices of the points to plot
-            indexes = range(
-                max(0, peak - 4), min(len(temporal_energy_per_audio[file]), peak + 5)
-            )
+            indexes = range(max(0, peak-4), min(len(temporal_energy_per_audio[file]), peak+5))
             # Plot on a logarithmic scale
-            plt.plot(
-                indexes,
-                np.log10(temporal_energy_per_audio[file][indexes]),
-                color=colors[i % len(colors)],
-            )
-
+            plt.plot(indexes, np.log10(temporal_energy_per_audio[file][indexes]), color=colors[i % len(colors)])            
+        
         # Configure the plot
-        plt.xlabel("Time Index")
-        plt.ylabel("Energy (logarithmic scale)")
-        plt.title(f"Temporal Energy Peaks for {file}")
+        plt.xlabel('Time Index', fontsize=14)
+        plt.ylabel('Energy (logarithmic scale)', fontsize=14)
+        plt.title(f'Temporal Energy Peaks for {file}', fontsize=18)
+        plt.tick_params(axis='both', which='major', labelsize=12)  
         plt.tight_layout()
         if xlim_left != -1 and xlim_right != -1:
             plt.xlim(xlim_left, xlim_right)
         elif xlim_left != -1:
-            plt.xlim(
-                xlim_left,
-            )
+            plt.xlim(xlim_left,)
         elif xlim_right != -1:
             plt.xlim(xlim_right)
         plt.show()
 
 
-def plot_energy_peaks_momments(
-    energy_peaks_per_audio: dict,
-    pivot_file_name: str,
-    xlim_left: int = -1,
-    xlim_right: int = -1,
-) -> None:
+
+def plot_energy_peaks_momments(energy_peaks_per_audio: dict, pivot_file_name: str, xlim_left: int = -1, xlim_right: int = -1) -> None:
     """
     Plots the energy peaks moments for multiple audio files.
     Parameters:
@@ -524,7 +501,7 @@ def plot_energy_peaks_momments(
     None
         This function does not return any value. It displays a plot.
     """
-
+    
     # Specific colors for the plots
     colors = plt.cm.viridis(np.linspace(0, 1, len(energy_peaks_per_audio.keys())))
 
@@ -533,42 +510,32 @@ def plot_energy_peaks_momments(
 
     # Process the energy arrays to find the peaks and plot vertical lines
     for i, (file, peaks) in enumerate(energy_peaks_per_audio.items()):
-
+        
         # Variable de control para la etiqueta
         label_set = False
-
+        
         # Plot vertical lines at the moments of energy peaks
         for peak in peaks:
-            if file == pivot_file_name:
-                plt.axvline(
-                    x=peak,
-                    color="black",
-                    linestyle="-",
-                    label=f"{file}" if not label_set else "",
-                )
+            if file == pivot_file_name:  
+                plt.axvline(x=peak, color='black', linestyle='-', label=f'{file}' if not label_set else "")
             else:  # For other files, use a dashed line and the corresponding color
-                plt.axvline(
-                    x=peak,
-                    color=colors[i % len(colors)],
-                    linestyle="--",
-                    label=f"{file}" if not label_set else "",
-                )
-
+                plt.axvline(x=peak, color=colors[i % len(colors)], linestyle='--', label=f'{file}' if not label_set else "")
+            
             # Establecer la variable de control a True después de la primera iteración
             label_set = True
 
     # Configure the plot
-    plt.xlabel("Time Index")
-    plt.ylabel("Energy")
-    plt.title("Energy Peaks Moments")
-    plt.legend(loc="upper right", bbox_to_anchor=(1.15, 1))
+    plt.xlabel('Time Index', fontsize=14)
+    plt.ylabel('Energy', fontsize=14)
+    plt.title('Energy Peaks Moments', fontsize=18)
+    plt.legend(loc='upper right', bbox_to_anchor=(1.15, 1), fontsize=12)
+    plt.tick_params(axis='both', which='major', labelsize=12)  
+
     plt.tight_layout()
     if xlim_left != -1 and xlim_right != -1:
         plt.xlim(xlim_left, xlim_right)
     elif xlim_left != -1:
-        plt.xlim(
-            xlim_left,
-        )
+        plt.xlim(xlim_left,)
     elif xlim_right != -1:
         plt.xlim(xlim_right)
     plt.show()
