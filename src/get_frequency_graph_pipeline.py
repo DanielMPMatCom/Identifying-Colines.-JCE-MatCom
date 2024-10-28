@@ -224,7 +224,7 @@ def plot_frequency_graph(
 
         miliseconds = non_zero_inexes * time_interval
 
-        plt.scatter(miliseconds, non_zero_values, color=colors[i], label=f"Rana {i+1}")
+        plt.scatter(miliseconds, non_zero_values, color=colors[i], label=f"Frog {i+1}")
 
     plt.xlabel("Time (s)", fontsize=14)
     plt.ylabel("Frequency Band", fontsize=14)
