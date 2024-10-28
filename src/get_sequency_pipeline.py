@@ -155,32 +155,26 @@ def divide_into_lin_co(datapath: str, linpath: str = None, copath: str = None) -
         - The remaining rows are saved in the 'lin' directory.
     """
 
-    # Obtén la lista de archivos .npy en el directorio
     files = [f for f in os.listdir(datapath) if f.endswith(".npy")]
 
     if linpath is not None:
-        # Crea el directorio 'lin' si no existe
         os.makedirs(linpath, exist_ok=True)
     else:
         linpath = os.path.join(datapath, "lin")
         os.makedirs(linpath, exist_ok=True)
 
     if copath is not None:
-        # Crea el directorio 'co' si no existe
         os.makedirs(copath, exist_ok=True)
     else:
         copath = os.path.join(datapath, "co")
         os.makedirs(copath, exist_ok=True)
 
     for file in files:
-        # Carga el file .npy
         data = np.load(os.path.join(datapath, file))
 
-        # Divide los data en dos partes
         data_lin = data[60:, :]
         data_co = data[:60, :]
 
-        # Guarda las partes en los directorios 'lin' y 'co'
         np.save(os.path.join(linpath, file), data_lin)
         np.save(os.path.join(copath, file), data_co)
 
