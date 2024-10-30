@@ -526,10 +526,11 @@ def plot_energy_peaks_momments(energy_peaks_per_audio: dict, pivot_file_name: st
 
     # Configure the plot
     plt.xlabel('Time Index', fontsize=14)
-    plt.ylabel('Energy', fontsize=14)
     plt.title('Energy Peaks Moments', fontsize=18)
     plt.legend(loc='upper right', bbox_to_anchor=(1.15, 1), fontsize=12)
-    plt.tick_params(axis='both', which='major', labelsize=12)  
+    plt.tick_params(axis='both', which='major', labelsize=12) 
+    
+    plt.gca().set_yticks([]) 
 
     plt.tight_layout()
     if xlim_left != -1 and xlim_right != -1:
