@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.3.14)  27 OCT 2024 22:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.3.14)  28 OCT 2024 09:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -613,15 +613,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 394--395
  []
 
 
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/it' instead on input line 396.
-
-[3 <./assets/temp_energy.png> <./assets/energy_hist.png> <./assets/peaks_before.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 396--397
 
  []
 
 
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/it' instead on input line 397.
+
+[3 <./assets/temp_energy.png> <./assets/energy_hist.png> <./assets/peaks_before.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 400--401
 
  []
@@ -656,7 +656,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 463--467
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/it' instead on input line 467.
+(Font)              using `OT1/cmr/m/it' instead on input line 470.
 
 [4 <./assets/peaks_after.png> <./assets/sequence.png> <./assets/frequencylin.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 476--477
@@ -703,9 +703,9 @@ Here is how much of TeX's memory you used:
  25254 multiletter control sequences out of 15000+600000
  538546 words of font info for 46 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 46i,7n,42p,403b,413s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 46i,6n,42p,403b,413s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/danielhp/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </home/danielhp/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on "build/Identifying Elenas.pdf" (5 pages, 807514 bytes).
+Output written on "build/Identifying Elenas.pdf" (5 pages, 807480 bytes).
 PDF statistics:
  165 PDF objects out of 1000 (max. 8388607)
  123 compressed objects within 2 object streams
