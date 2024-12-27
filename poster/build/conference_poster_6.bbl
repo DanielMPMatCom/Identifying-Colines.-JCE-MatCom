@@ -1,0 +1,25 @@
+\begin{thebibliography}{1}
+
+\bibitem{Alonso:2001}
+Rodríguez-Gómez~A. Alonso, R. and A.~R. Estrada.
+\newblock Patrones de actividad acústica y trófica de machos cantores de
+  eleutherodactylus eileenae (anura: Leptodactylidae).
+\newblock {\em Revista española de herpetología}, 15:45--52, 2001.
+
+\bibitem{Bourke:1996}
+P.~Bourke.
+\newblock {\em {C}ross {C}orrelation. {C}ross {C}orrelation”, {A}uto
+  {C}orrelation—2{D} {P}attern {I}dentification}.
+\newblock Self-published, 1996.
+
+\bibitem{Jurafsky:2008}
+D.~Jurafsky and J.~H. Martin.
+\newblock {\em {S}peech and {L}anguage {P}rocessing}.
+\newblock Pearson, 2nd edition, 2008.
+
+\bibitem{mel}
+Centic Murcia.
+\newblock Mel spectogram.
+\newblock {\em Curso de Ciencia de Datos}, n.d.
+
+\end{thebibliography}
